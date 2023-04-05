@@ -55,3 +55,17 @@ class PartnerResource(Resource):
                 }
             )
         return make_response(jsonify(PartnerResource.not_found), 404)
+
+    @staticmethod
+    def delete(partner_id):
+        """Delete a partner's information based on id"""
+        partner = PartnerRepository.delete(partner_id)
+        if partner is None:
+            return make_response(jsonify(PartnerResource.not_found), 404)
+
+        return jsonify(
+            {
+                "partner": partner.json,
+                "message": "The partner's information were successfully deleted.",
+            }
+        )

@@ -40,3 +40,12 @@ class PartnerRepository:
         partner = Partner(name=name, cnpj=cnpj, email=email, password=password)
 
         return partner.save()
+
+    @staticmethod
+    def delete(partner_id):
+        """Delete a partner"""
+        partner = PartnerRepository.get(partner_id)
+        if partner is None:
+            return None
+
+        return partner.delete()
