@@ -20,8 +20,14 @@ class PartnersResource(Resource):
 
     @staticmethod
     def get():
-        """Return all partners"""
-        partners = PartnerRepository.get_all()
+        """If argument "last=value" is sent, return the last "value" partners.
+        Else return all partners"""
+        args = request.args
+        if args is not None and "last" in args:
+            last = int(args["last"])
+            partners = PartnerRepository.get_last(last)
+        else:
+            partners = PartnerRepository.get_all()
 
         return make_response(
             jsonify(
