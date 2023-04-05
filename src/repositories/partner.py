@@ -15,6 +15,11 @@ class PartnerRepository:
     def get_all():
         """Query all partners"""
         return Partner.query.all()
+    
+    @staticmethod
+    def get_last(last):
+        """Query the last added partners, by created_at (creation time)"""
+        return Partner.query.order_by(Partner.created_at.desc()).limit(last)
 
     def update(self, partner_id, name, cnpj, email, password):
         """Update a partner's data"""
@@ -40,3 +45,12 @@ class PartnerRepository:
         partner = Partner(name=name, cnpj=cnpj, email=email, password=password)
 
         return partner.save()
+
+    @staticmethod
+    def delete(partner_id):
+        """Delete a partner"""
+        partner = PartnerRepository.get(partner_id)
+        if partner is None:
+            return None
+
+        return partner.delete()

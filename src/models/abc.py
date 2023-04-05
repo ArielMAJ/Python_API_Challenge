@@ -66,3 +66,4 @@ class BaseModel:
         """Delete the current instance"""
         db.session.delete(self)
         db.session.commit()
+        return self
