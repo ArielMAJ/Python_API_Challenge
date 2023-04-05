@@ -6,6 +6,7 @@ from flask import make_response
 from flask.json import jsonify
 from flask_restful import Resource, request
 
+from models import Partner
 from repositories import PartnerRepository
 
 
@@ -20,8 +21,14 @@ class PartnersResource(Resource):
 
     @staticmethod
     def get():
-        """Return all partners"""
-        partners = PartnerRepository.get_all()
+        """If argument "last=value" is sent, return the last "value" partners.
+        Else return all partners"""
+        args = request.args
+        if args is not None and "last" in args:
+            last = int(args["last"])
+            partners = PartnerRepository.get_last(last)
+        else:
+            partners = PartnerRepository.get_all()
 
         return make_response(
             jsonify(
@@ -46,16 +53,22 @@ class PartnersResource(Resource):
         partner = PartnerRepository.create(
             name=name, cnpj=cnpj, email=email, password=password
         )
-        if partner is not None:
-            return jsonify(
-                {"partner": partner.json, "message": "Partner created successfully."}
+        if isinstance(partner, Partner):
+            return make_response(
+                jsonify(
+                    {
+                        "partner": partner.json,
+                        "message": "Partner created successfully.",
+                    }
+                ),
+                200,
             )
 
         return make_response(
             jsonify(
                 {
                     "partner": None,
-                    "message": "Partner CNPJ or email already exists.",
+                    "message": partner,
                 }
             ),
             409,

@@ -38,7 +38,7 @@ class BaseModel:
         return {
             column: value
             if not isinstance(value, datetime)
-            else value.strftime("%Y-%m-%d")
+            else value.strftime("%Y-%m-%dT%H:%M:%S")
             for column, value in self._to_dict().items()
             if column not in self.to_json_filter
         }
@@ -66,3 +66,4 @@ class BaseModel:
         """Delete the current instance"""
         db.session.delete(self)
         db.session.commit()
+        return self
