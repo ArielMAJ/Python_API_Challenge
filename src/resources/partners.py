@@ -6,6 +6,7 @@ from flask import make_response
 from flask.json import jsonify
 from flask_restful import Resource, request
 
+from models import Partner
 from repositories import PartnerRepository
 
 
@@ -52,16 +53,22 @@ class PartnersResource(Resource):
         partner = PartnerRepository.create(
             name=name, cnpj=cnpj, email=email, password=password
         )
-        if partner is not None:
-            return jsonify(
-                {"partner": partner.json, "message": "Partner created successfully."}
+        if isinstance(partner, Partner):
+            return make_response(
+                jsonify(
+                    {
+                        "partner": partner.json,
+                        "message": "Partner created successfully.",
+                    }
+                ),
+                200,
             )
 
         return make_response(
             jsonify(
                 {
                     "partner": None,
-                    "message": "Partner CNPJ or email already exists.",
+                    "message": partner,
                 }
             ),
             409,
