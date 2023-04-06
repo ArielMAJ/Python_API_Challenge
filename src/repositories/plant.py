@@ -28,7 +28,14 @@ class PlantRepository:
         return Plant.query.order_by(Plant.max_capacity_gw.desc()).limit(top)
 
     def update(
-        self, plant_id, name, cep, longitude, latitude, max_capacity_gw, updated_at
+        self,
+        plant_id,
+        name,
+        cep,
+        longitude,
+        latitude,
+        max_capacity_gw,
+        updated_at,
     ):
         """Update a plant's data"""
         cep = util.cep.process(cep)
