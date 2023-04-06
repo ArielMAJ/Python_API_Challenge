@@ -22,3 +22,20 @@ PARTNER_2 = {
     "name": "Bob Smith",
     "password": "87654321",
 }
+
+
+PLANT_1 = {
+    "name": "Super Plant",
+    "cep": "01001000",
+    "latitude": 0.0,
+    "longitude": 0.0,
+    "max_capacity_gw": 100,
+}
+
+PLANT_2 = {
+    "name": "Medium Plant",
+    "cep": "01001000",
+    "latitude": 1.0,
+    "longitude": 1.0,
+    "max_capacity_gw": 50,
+}
