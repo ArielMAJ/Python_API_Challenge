@@ -56,7 +56,7 @@ class TestPartner(unittest.TestCase):
         self.assertEqual(
             response_json,
             {
-                "message": "The partner's information were successfully retrieved.",
+                "message": "The partner's data were successfully retrieved.",
                 "partner": partner_1.json,
             },
         )
@@ -129,7 +129,7 @@ class TestPartner(unittest.TestCase):
             response_json,
             {
                 "partner": partner1.json,
-                "message": "The partner's information were successfully deleted.",
+                "message": "The partner's data were successfully deleted.",
             },
         )
         self.assertEqual(Partner.query.count(), 1)
@@ -144,7 +144,7 @@ class TestPartner(unittest.TestCase):
             response_json,
             {
                 "partner": partner2.json,
-                "message": "The partner's information were successfully deleted.",
+                "message": "The partner's data were successfully deleted.",
             },
         )
         self.assertEqual(Partner.query.count(), 0)

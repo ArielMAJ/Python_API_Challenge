@@ -1,3 +1,2 @@
 """Utility functions for the project."""
-from . import cep
-from . import cnpj
+from . import cep, cnpj

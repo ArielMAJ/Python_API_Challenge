@@ -3,8 +3,9 @@
 from pyisemail import is_email
 from validate_docbr import CNPJ
 
-from models import Partner
 import util
+from models import Partner
+
 
 class PartnerRepository:
     """The repository for the partner model"""

@@ -3,10 +3,10 @@ Define the REST verbs relative to a plant
 """
 from datetime import datetime
 
+from flasgger import swag_from
 from flask import make_response
 from flask.json import jsonify
 from flask_restful import Resource, request
-from flasgger import swag_from
 
 from models import Plant
 from repositories import PlantRepository

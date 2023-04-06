@@ -47,7 +47,7 @@ class TestPlant(unittest.TestCase):
         self.assertEqual(
             response_json,
             {
-                "message": "The plant's information were successfully retrieved.",
+                "message": "The plant's data were successfully retrieved.",
                 "plant": plant_1.json,
             },
         )
@@ -114,7 +114,7 @@ class TestPlant(unittest.TestCase):
             response_json,
             {
                 "plant": plant1.json,
-                "message": "The plant's information were successfully deleted.",
+                "message": "The plant's data were successfully deleted.",
             },
         )
         self.assertEqual(Plant.query.count(), 1)
@@ -129,7 +129,7 @@ class TestPlant(unittest.TestCase):
             response_json,
             {
                 "plant": plant2.json,
-                "message": "The plant's information were successfully deleted.",
+                "message": "The plant's data were successfully deleted.",
             },
         )
         self.assertEqual(Plant.query.count(), 0)

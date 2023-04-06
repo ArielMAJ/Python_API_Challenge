@@ -62,7 +62,7 @@ class TestPartner(unittest.TestCase):
         self.assertEqual(
             response_json,
             {
-                "message": "The partners' information were successfully retrieved.",
+                "message": "The partners' data were successfully retrieved.",
                 "partners": [partner_1.json, partner_2.json],
             },
         )
@@ -98,7 +98,7 @@ class TestPartner(unittest.TestCase):
         self.assertEqual(
             response_json,
             {
-                "message": "The partners' information were successfully retrieved.",
+                "message": "The partners' data were successfully retrieved.",
                 "partners": [partner_2.json],
             },
         )

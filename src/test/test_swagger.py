@@ -4,8 +4,8 @@ import json
 import unittest
 import warnings
 
-from server import create_app
 import config
+from server import create_app
 
 
 class TestSwagger(unittest.TestCase):
