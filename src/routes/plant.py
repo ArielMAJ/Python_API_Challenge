@@ -1,5 +1,5 @@
 """
-Defines the blueprint for a plant
+Defines the blueprint for plant.
 """
 from flask import Blueprint
 from flask_restful import Api

@@ -44,6 +44,10 @@ class Partner(db.Model, BaseModel):
         self.email = email.lower()
         self.password = generate_password_hash(password)
 
+        default_time = datetime.utcnow()
+        self.created_at = default_time
+        self.updated_at = default_time
+
     def set_password(self, password):
         """Create a hashed password."""
         self.password = generate_password_hash(password)

@@ -2,6 +2,7 @@
 Define the REST verbs relative to the partners
 """
 
+from flasgger import swag_from
 from flask import make_response
 from flask.json import jsonify
 from flask_restful import Resource, request
@@ -20,6 +21,7 @@ class PartnersResource(Resource):
     }
 
     @staticmethod
+    @swag_from("../swagger/partners/GET.yml")
     def get():
         """If argument "last=value" is sent, return the last "value" partners.
         Else return all partners"""
@@ -34,15 +36,16 @@ class PartnersResource(Resource):
             jsonify(
                 {
                     "partners": [partner.json for partner in partners],
-                    "message": "The partners' information were successfully retrieved.",
+                    "message": "The partners' data were successfully retrieved.",
                 }
             ),
             200,
         )
 
     @staticmethod
+    @swag_from("../swagger/partners/POST.yml")
     def post():
-        """Create an partner based on the sent information"""
+        """Create an partner based on the sent data"""
         if request.json is None:
             return make_response(jsonify(PartnersResource.should_be_json), 400)
 
@@ -71,5 +74,5 @@ class PartnersResource(Resource):
                     "message": partner,
                 }
             ),
-            409,
+            400,
         )

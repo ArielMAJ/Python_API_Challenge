@@ -20,6 +20,7 @@ class Plant(db.Model, BaseModel):
         unique=True,
         index=True,
     )
+
     name = db.Column(db.String(300), nullable=False)
     cep = db.Column(db.String(8), nullable=False)
     latitude = db.Column(db.Float, nullable=False)
@@ -43,3 +44,7 @@ class Plant(db.Model, BaseModel):
         self.latitude = latitude
         self.longitude = longitude
         self.max_capacity_gw = max_capacity_gw
+
+        default_time = datetime.utcnow()
+        self.created_at = default_time
+        self.updated_at = default_time

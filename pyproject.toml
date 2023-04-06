@@ -1,0 +1,43 @@
+[tool]
+name = "python_api_challenge"
+version = "1.0.0"
+description = "A REST API challenge built with Python and Flask."
+authors = [
+    "ArielMAJ <ariel.maj@hotmail.com>",
+]
+maintainers = [
+    "ArielMAJ <ariel.maj@hotmail.com>",
+]
+license = "MIT"
+
+readme = "README.md"
+
+homepage = ""
+repository = "https://github.com/ArielMAJ/Python_API_Challenge"
+documentation = "https://github.com/ArielMAJ/Python_API_Challenge/blob/main/README.md"
+
+keywords = ["API", "Flask", "Python", "REST", "Challenge"]
+
+# Requirements
+[tool.dependencies]
+python = "^3.11"
+Flask = "2.2.3"
+flask_sqlalchemy = "3.0.3"
+flask_restful = "0.3.9"
+python-dotenv = "1.0.0"
+werkzeug = "2.2.3"
+validate-docbr = "1.10.0"
+pyisemail = "2.0.1"
+requests = "2.28.2"
+flasgger = "0.9.5"
+
+[tool.dev.dependencies]
+black = "23.3.0"
+mypy = "1.1.1"
+pylint = "2.17.2"
+isort = "5.12.0"
+flake8 = "6.0.0"
+
+[tool.black]
+target-version = ['py311']
+line-length = 79
