@@ -1,8 +1,8 @@
 """Server module."""
 
+from flasgger import Swagger
 from flask import Flask
 from flask.blueprints import Blueprint
-from flasgger import Swagger
 
 import routes
 from config import Config, DevelopmentConfig

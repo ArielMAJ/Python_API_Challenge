@@ -1,5 +1,5 @@
 """
-Defines the blueprint for a partner
+Defines the blueprint for partner.
 """
 from flask import Blueprint
 from flask_restful import Api
