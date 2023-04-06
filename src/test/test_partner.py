@@ -1,4 +1,4 @@
-"""Test the partner endpoints"""
+"""Test `partner` endpoints"""
 
 import json
 import unittest
@@ -14,7 +14,7 @@ from . import PARTNER_1, PARTNER_2
 
 
 class TestPartner(unittest.TestCase):
-    """Test the partner endpoints"""
+    """Test `partner` endpoints"""
 
     @classmethod
     def setUpClass(cls):
@@ -32,7 +32,7 @@ class TestPartner(unittest.TestCase):
         self.app_context.pop()
 
     def test_get(self):
-        """The GET on `/partners/<int:partner_id>` should return a partner"""
+        """GET on `/partners/<int:partner_id>` should return a partner"""
         true_partner_1 = PartnerRepository.create(**PARTNER_1)
         self.assertIsNotNone(true_partner_1)
 
@@ -46,7 +46,8 @@ class TestPartner(unittest.TestCase):
 
         self.assertTrue(
             check_password_hash(
-                response_json["partner"]["password"], PARTNER_1["password"]
+                response_json["partner"]["password"],
+                PARTNER_1["password"],
             )
         )
 
@@ -59,7 +60,8 @@ class TestPartner(unittest.TestCase):
         )
 
     def test_update(self):
-        """The PUT on `/partners/<int:partner_id>` should update a partner's data."""
+        """PUT on `/partners/<int:partner_id>` should update the partner with
+        partner_id=<partner_id>."""
         PartnerRepository.create(**PARTNER_1)
         response = self.client.put(
             "/partners/1",
@@ -82,10 +84,16 @@ class TestPartner(unittest.TestCase):
         self.assertEqual(partner.name, PARTNER_2["name"])
         self.assertEqual(partner.email, PARTNER_2["email"])
         self.assertEqual(partner.cnpj, PARTNER_2["cnpj"])
-        self.assertTrue(check_password_hash(partner.password, PARTNER_2["password"]))
+        self.assertTrue(
+            check_password_hash(
+                partner.password,
+                PARTNER_2["password"],
+            )
+        )
 
     def test_delete(self):
-        """The DELETE on `/partners/<int:partner_id>` should delete a partner"""
+        """DELETE on `/partners/<int:partner_id>` should delete the partner
+        with partner_id=<partner_id>"""
         response = self.client.delete("/partners/1")
 
         self.assertEqual(response.status_code, 404)

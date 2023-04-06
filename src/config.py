@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 
 class Config:
     """Base configuration."""
+
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     env_path = os.path.join(os.path.dirname(__file__), "..", ".env")
     load_dotenv(env_path, verbose=True)
@@ -32,6 +33,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     """Development configuration."""
+
     SQLALCHEMY_DATABASE_URI = (
         f"sqlite:///{os.path.join(os.path.dirname(__file__), 'dev.db')}"
     )
@@ -39,6 +41,7 @@ class DevelopmentConfig(Config):
 
 class ProductionConfig(Config):
     """Production configuration."""
+
     SQLALCHEMY_DATABASE_URI = (
         f"sqlite:///{os.path.join(os.path.dirname(__file__), 'production.db')}"
     )
@@ -46,5 +49,6 @@ class ProductionConfig(Config):
 
 class TestConfig(Config):
     """Test configuration."""
+
     TESTING = True
     SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"

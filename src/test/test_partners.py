@@ -1,8 +1,7 @@
-"""Test partners endpoints"""
+"""Test `partners` endpoints"""
 
 import json
 import unittest
-from datetime import datetime
 
 from werkzeug.security import check_password_hash
 
@@ -15,7 +14,7 @@ from . import PARTNER_1, PARTNER_2, UTC_NOW_DICT
 
 
 class TestPartner(unittest.TestCase):
-    """Test partners endpoints"""
+    """Test `partners` endpoints"""
 
     @classmethod
     def setUpClass(cls):
@@ -33,7 +32,7 @@ class TestPartner(unittest.TestCase):
         self.app_context.pop()
 
     def test_get(self):
-        """The GET on `/partners` should return all partners"""
+        """GET on `/partners/` should return all partners"""
         true_partner_1 = PartnerRepository.create(**PARTNER_1)
         true_partner_2 = PartnerRepository.create(**PARTNER_2)
         self.assertIsNotNone(true_partner_1)
@@ -67,7 +66,8 @@ class TestPartner(unittest.TestCase):
         )
 
     def test_get_last(self):
-        """The GET on `/partners/?last=10` should return all partners"""
+        """GET on `/partners/?last=value` should return last `value` partners
+        added, by creation date"""
 
         self.assertEqual(Partner.query.count(), 0)
         true_partner_1 = PartnerRepository.create(**PARTNER_1)
@@ -101,7 +101,7 @@ class TestPartner(unittest.TestCase):
         self.assertEqual(Partner.query.count(), 2)
 
     def test_create(self):
-        """The POST on `/partners` should create a partner"""
+        """POST on `/partners/` should create a partner"""
         response = self.client.post(
             "/partners/",
             content_type="application/json",
