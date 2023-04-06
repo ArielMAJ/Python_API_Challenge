@@ -89,4 +89,6 @@ class PartnerResource(Resource):
     @staticmethod
     def error(obj, message, code):
         """Return an error message"""
-        return make_response(jsonify({"partner": obj, "message": message}), code)
+        return make_response(
+            jsonify({"partner": obj, "message": message}), code
+        )

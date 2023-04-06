@@ -62,7 +62,10 @@ class PlantsResource(Resource):
         if isinstance(plant, Plant):
             return make_response(
                 jsonify(
-                    {"plant": plant.json, "message": "Plant created successfully."}
+                    {
+                        "plant": plant.json,
+                        "message": "Plant created successfully.",
+                    }
                 ),
                 200,
             )

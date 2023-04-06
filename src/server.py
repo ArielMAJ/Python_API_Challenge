@@ -18,7 +18,9 @@ def create_app(config_name):
 
     for blueprint in vars(routes).values():
         if isinstance(blueprint, Blueprint):
-            _server.register_blueprint(blueprint, url_prefix=Config.APPLICATION_ROOT)
+            _server.register_blueprint(
+                blueprint, url_prefix=Config.APPLICATION_ROOT
+            )
 
     return _server
 
