@@ -2,6 +2,7 @@
 
 import json
 import unittest
+from time import sleep
 
 from werkzeug.security import check_password_hash
 
@@ -33,8 +34,9 @@ class TestPartner(unittest.TestCase):
 
     def test_get(self):
         """GET on `/partners/<int:partner_id>` should return a partner"""
-        true_partner_1 = PartnerRepository.create(**PARTNER_1)
-        self.assertIsNotNone(true_partner_1)
+        partner_1 = PartnerRepository.create(**PARTNER_1)
+        self.assertIsNotNone(partner_1)
+        self.assertIsInstance(partner_1, Partner)
 
         response = self.client.get("/partners/1")
         self.assertIsNotNone(response)
@@ -55,14 +57,19 @@ class TestPartner(unittest.TestCase):
             response_json,
             {
                 "message": "The partner's information were successfully retrieved.",
-                "partner": true_partner_1.json,
+                "partner": partner_1.json,
             },
         )
 
     def test_update(self):
         """PUT on `/partners/<int:partner_id>` should update the partner with
         partner_id=<partner_id>."""
-        PartnerRepository.create(**PARTNER_1)
+        partner_0 = PartnerRepository.create(**PARTNER_1)
+        self.assertIsNotNone(partner_0)
+        self.assertIsInstance(partner_0, Partner)
+        self.assertEqual(partner_0.created_at, partner_0.updated_at)
+
+        sleep(0.1)
         response = self.client.put(
             "/partners/1",
             content_type="application/json",
@@ -72,6 +79,7 @@ class TestPartner(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         response_json = json.loads(response.data.decode("utf-8"))
         partner = PartnerRepository.get(1)
+        self.assertIsInstance(partner, Partner)
 
         self.assertEqual(
             response_json,
@@ -90,6 +98,7 @@ class TestPartner(unittest.TestCase):
                 PARTNER_2["password"],
             )
         )
+        self.assertNotEqual(partner.created_at, partner.updated_at)
 
     def test_delete(self):
         """DELETE on `/partners/<int:partner_id>` should delete the partner
@@ -106,9 +115,11 @@ class TestPartner(unittest.TestCase):
         self.assertEqual(Partner.query.count(), 0)
 
         partner1 = PartnerRepository.create(**PARTNER_1)
+        self.assertIsInstance(partner1, Partner)
         self.assertEqual(Partner.query.count(), 1)
-        partner2 = PartnerRepository.create(**PARTNER_2)
 
+        partner2 = PartnerRepository.create(**PARTNER_2)
+        self.assertIsInstance(partner2, Partner)
         self.assertEqual(Partner.query.count(), 2)
 
         response = self.client.delete("/partners/1")
@@ -123,6 +134,10 @@ class TestPartner(unittest.TestCase):
         )
         self.assertEqual(Partner.query.count(), 1)
 
+        response = self.client.delete("/partners/1")
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(Partner.query.count(), 1)
+
         response = self.client.delete("/partners/2")
         response_json = json.loads(response.data.decode("utf-8"))
         self.assertEqual(
@@ -132,4 +147,8 @@ class TestPartner(unittest.TestCase):
                 "message": "The partner's information were successfully deleted.",
             },
         )
+        self.assertEqual(Partner.query.count(), 0)
+
+        response = self.client.delete("/partners/2")
+        self.assertEqual(response.status_code, 404)
         self.assertEqual(Partner.query.count(), 0)
