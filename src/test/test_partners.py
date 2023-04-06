@@ -33,10 +33,12 @@ class TestPartner(unittest.TestCase):
 
     def test_get(self):
         """GET on `/partners/` should return all partners"""
-        true_partner_1 = PartnerRepository.create(**PARTNER_1)
-        true_partner_2 = PartnerRepository.create(**PARTNER_2)
-        self.assertIsNotNone(true_partner_1)
-        self.assertIsNotNone(true_partner_2)
+        partner_1 = PartnerRepository.create(**PARTNER_1)
+        partner_2 = PartnerRepository.create(**PARTNER_2)
+        self.assertIsNotNone(partner_1)
+        self.assertIsNotNone(partner_2)
+        self.assertIsInstance(partner_1, Partner)
+        self.assertIsInstance(partner_2, Partner)
 
         response = self.client.get("/partners/")
         self.assertIsNotNone(response)
@@ -61,7 +63,7 @@ class TestPartner(unittest.TestCase):
             response_json,
             {
                 "message": "The partners' information were successfully retrieved.",
-                "partners": [true_partner_1.json, true_partner_2.json],
+                "partners": [partner_1.json, partner_2.json],
             },
         )
 
@@ -70,12 +72,14 @@ class TestPartner(unittest.TestCase):
         added, by creation date"""
 
         self.assertEqual(Partner.query.count(), 0)
-        true_partner_1 = PartnerRepository.create(**PARTNER_1)
+        partner_1 = PartnerRepository.create(**PARTNER_1)
         self.assertEqual(Partner.query.count(), 1)
-        true_partner_2 = PartnerRepository.create(**PARTNER_2)
+        partner_2 = PartnerRepository.create(**PARTNER_2)
         self.assertEqual(Partner.query.count(), 2)
-        self.assertIsNotNone(true_partner_1)
-        self.assertIsNotNone(true_partner_2)
+        self.assertIsNotNone(partner_1)
+        self.assertIsNotNone(partner_2)
+        self.assertIsInstance(partner_1, Partner)
+        self.assertIsInstance(partner_2, Partner)
 
         response = self.client.get("/partners/?last=1")
         self.assertIsNotNone(response)
@@ -95,10 +99,18 @@ class TestPartner(unittest.TestCase):
             response_json,
             {
                 "message": "The partners' information were successfully retrieved.",
-                "partners": [true_partner_2.json],
+                "partners": [partner_2.json],
             },
         )
         self.assertEqual(Partner.query.count(), 2)
+        self.assertEqual(partner_2.name, response_json["partners"][0]["name"])
+        self.assertEqual(
+            partner_2.email, response_json["partners"][0]["email"]
+        )
+        self.assertEqual(partner_2.cnpj, response_json["partners"][0]["cnpj"])
+        self.assertEqual(
+            partner_2.password, response_json["partners"][0]["password"]
+        )
 
     def test_create(self):
         """POST on `/partners/` should create a partner"""
