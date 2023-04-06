@@ -1,0 +1,30 @@
+Returns a plant based on plant_id
+---
+tags:
+  - plant
+parameters:
+  - name: plant_id
+    in: path
+    type: integer
+    description: the id of the plant
+responses:
+  200:
+    description: The plants' data were successfully retrieved.
+    schema:
+      example:
+        message: "The plants' data were successfully retrieved."
+        plant:
+          plant_id: 1
+          name: "Plant 1"
+          cep: "01001000"
+          latitude: 0
+          longitude: 0
+          max_capacity_gw: 0
+          created_at: "2023-04-06T17:19:01"
+          update_at: "2023-04-06T17:19:01"
+  404:
+    description: Plant was not found
+    schema:
+      example:
+        plant: null
+        message: Plant not found.

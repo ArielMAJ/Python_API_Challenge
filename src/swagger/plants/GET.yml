@@ -1,0 +1,25 @@
+Returns a list of all plants. If the parameter "top" is specified, it will return that amount of the top capacity plants, sorted by highest max_capacity_gw.
+---
+tags:
+  - plants
+parameters:
+  - in: query
+    name: top
+    schema:
+      type: integer
+    description: The amount of plants sorted by max_capacity_gw to return. If not specified, it will return all plants.
+responses:
+  200:
+    description: The plants' data were successfully retrieved.
+    schema:
+      example:
+        message: "The plants' data were successfully retrieved."
+        plant:
+          plant_id: 1
+          name: "Plant 1"
+          cep: "01001000"
+          latitude: 0
+          longitude: 0
+          max_capacity_gw: 0
+          created_at: "2023-04-06T17:19:01"
+          update_at: "2023-04-06T17:19:01"

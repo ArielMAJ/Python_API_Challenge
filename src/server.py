@@ -2,6 +2,7 @@
 
 from flask import Flask
 from flask.blueprints import Blueprint
+from flasgger import Swagger
 
 import routes
 from config import Config, DevelopmentConfig
@@ -11,6 +12,23 @@ from models import db
 def create_app(config_name):
     """Creates the application and returns it to the user."""
     _server = Flask(__name__)
+
+    _server.config["SWAGGER"] = {
+        "swagger_version": "2.0",
+        "title": "Application",
+        "specs": [
+            {
+                "version": "0.0.1",
+                "title": "Application",
+                "endpoint": "spec",
+                "route": "/application/spec",
+                "rule_filter": lambda rule: True,  # all in
+            }
+        ],
+        "static_url_path": "/apidocs",
+    }
+
+    Swagger(_server)
 
     _server.config.from_object(config_name)
     db.init_app(_server)
@@ -30,4 +48,5 @@ if __name__ == "__main__":
     with server.app_context():
         db.create_all()
     print(f"Server running at http://{Config.HOST}:{Config.PORT}/")
+    print(f"Swagger UI running at http://{Config.HOST}:{Config.PORT}/apidocs/")
     server.run(host=Config.HOST, port=Config.PORT, debug=Config.DEBUG)

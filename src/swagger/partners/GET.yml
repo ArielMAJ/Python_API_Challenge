@@ -1,0 +1,24 @@
+Returns a list of all partners. If the parameter "last" is specified, it will return the last added partners, sorted by most recent creation_date.
+---
+tags:
+  - partners
+parameters:
+  - in: query
+    name: last
+    schema:
+      type: integer
+    description: The amount of the last added partners, sorted by most recent creation_date, to be returned. If not specified, all partners will be returned.
+responses:
+  200:
+    description: The partners' data were successfully retrieved.
+    schema:
+      example:
+        message: "The partners' data were successfully retrieved."
+        partners:
+          - partner_id: 1
+            name: "Partner 1"
+            email: "partner@email.com"
+            cnpj: "51660963035967"
+            password: "pbkdf2:sha256:260000$yQ8Ekl7oXjkIk4HL$e865a86656c97e44ed8a821613cb0c2f0661499fb240350d01d7174f1c660d52"
+            created_at: "2023-04-06T17:19:01"
+            update_at: "2023-04-06T17:19:01"

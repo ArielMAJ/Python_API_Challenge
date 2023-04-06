@@ -6,6 +6,7 @@ from datetime import datetime
 from flask import make_response
 from flask.json import jsonify
 from flask_restful import Resource, request
+from flasgger import swag_from
 
 from models import Plant
 from repositories import PlantRepository
@@ -20,15 +21,16 @@ class PlantResource(Resource):
     }
 
     @staticmethod
+    @swag_from("../swagger/plant/GET.yml")
     def get(plant_id):
-        """Return an plant key information based on id"""
+        """Return an plant key data based on id"""
         plant = PlantRepository.get(plant_id)
         if isinstance(plant, Plant):
             return make_response(
                 jsonify(
                     {
                         "plant": plant.json,
-                        "message": "The plant's information were successfully retrieved.",
+                        "message": "The plant's data were successfully retrieved.",
                     }
                 ),
                 200,
@@ -37,8 +39,9 @@ class PlantResource(Resource):
         return PlantResource.error(None, plant, 404)
 
     @staticmethod
+    @swag_from("../swagger/plant/PUT.yml")
     def put(plant_id):
-        """Update an plant based on the sent information"""
+        """Update an plant based on the sent data"""
         repository = PlantRepository()
         if request.json is None:
             return make_response(jsonify(PlantResource.should_be_json), 400)
@@ -73,15 +76,16 @@ class PlantResource(Resource):
         return PlantResource.error(None, plant, 404)
 
     @staticmethod
+    @swag_from("../swagger/plant/DELETE.yml")
     def delete(plant_id):
-        """Delete a plant's information based on id"""
+        """Delete a plant's data based on id"""
         plant = PlantRepository.delete(plant_id)
         if isinstance(plant, Plant):
             return make_response(
                 jsonify(
                     {
                         "plant": plant.json,
-                        "message": "The plant's information were successfully deleted.",
+                        "message": "The plant's data were successfully deleted.",
                     }
                 ),
                 200,

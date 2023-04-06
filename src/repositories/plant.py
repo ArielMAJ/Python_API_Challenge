@@ -40,6 +40,8 @@ class PlantRepository:
         """Update a plant's data"""
         cep = util.cep.process(cep)
         plant = self.get(plant_id)
+        if not isinstance(plant, Plant):
+            return plant
 
         if error := PlantRepository.check_plant_is_valid_when_updating(
             plant, name, cep

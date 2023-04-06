@@ -5,6 +5,7 @@ Define the REST verbs relative to the plants
 from flask import make_response
 from flask.json import jsonify
 from flask_restful import Resource, request
+from flasgger import swag_from
 
 from models import Plant
 from repositories import PlantRepository
@@ -20,6 +21,7 @@ class PlantsResource(Resource):
     }
 
     @staticmethod
+    @swag_from("../swagger/plants/GET.yml")
     def get():
         """If argument "top=value" is sent, return the top "value" plants.
         Else return all plants"""
@@ -34,15 +36,16 @@ class PlantsResource(Resource):
             jsonify(
                 {
                     "plants": [plant.json for plant in plants],
-                    "message": "The plants' information were successfully retrieved.",
+                    "message": "The plants' data were successfully retrieved.",
                 }
             ),
             200,
         )
 
     @staticmethod
+    @swag_from("../swagger/plants/POST.yml")
     def post():
-        """Create an plant based on the sent information"""
+        """Create an plant based on the sent data"""
         if request.json is None:
             return make_response(jsonify(PlantsResource.should_be_json), 400)
 
@@ -77,5 +80,5 @@ class PlantsResource(Resource):
                     "message": plant,
                 }
             ),
-            409,
+            400,
         )
