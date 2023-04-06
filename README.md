@@ -69,7 +69,7 @@ This application was tested on Windows 11 with Python 3.11.0 and on WSL (Ubuntu 
 
 ## Documentation
 
-You can find the API's documentation [here](#swagger) and [here](DOCUMENTATION.md).
+You can find the API's documentation [here](#swagger).
 
 ## Contributing
 
