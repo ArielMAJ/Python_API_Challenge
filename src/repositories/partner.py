@@ -4,7 +4,7 @@ from pyisemail import is_email
 from validate_docbr import CNPJ
 
 from models import Partner
-
+import util
 
 class PartnerRepository:
     """The repository for the partner model"""
@@ -29,7 +29,11 @@ class PartnerRepository:
 
     def update(self, partner_id, name, cnpj, email, password, updated_at):
         """Update a partner's data"""
+        email = email.lower()
+        cnpj = util.cnpj.process(cnpj)
         partner = self.get(partner_id)
+        if not isinstance(partner, Partner):
+            return partner
 
         if error := PartnerRepository.check_partner_is_valid_when_updating(
             partner, name, cnpj, email, password
@@ -48,6 +52,7 @@ class PartnerRepository:
     def create(name, cnpj, email, password):
         """Create a new partner"""
         email = email.lower()
+        cnpj = util.cnpj.process(cnpj)
         partner = Partner(name=name, cnpj=cnpj, email=email, password=password)
 
         if errors := PartnerRepository.check_partner_is_valid_when_creating(
