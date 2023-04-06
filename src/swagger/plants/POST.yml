@@ -1,0 +1,48 @@
+Create an plant based on the sent data
+---
+tags:
+  - plants
+parameters:
+  - name: body
+    in: body
+    schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the plant
+        cep:
+          type: string
+          description: The cep of the plant
+        latitude:
+          type: number
+          format: float
+          description: The latitude of the plant
+        longitude:
+          type: number
+          format: float
+          description: The longitude of the plant
+        max_capacity_gw:
+          type: integer
+          description: The plant's max capacity, in GigaWatts (GW)
+responses:
+  200:
+    description: Plant created successfully.
+    schema:
+      example:
+        message: "Plant created successfully."
+        plant:
+          plant_id: 1
+          name: "Plant 1"
+          cep: "01001000"
+          latitude: 0
+          longitude: 0
+          max_capacity_gw: 0
+          created_at: "2023-04-06T17:19:01"
+          update_at: "2023-04-06T17:19:01"
+  400:
+    description: "One or more errors have occurred."
+    schema:
+      example:
+        plant: null
+        message: "Plant name already exists. Invalid CEP."
