@@ -1,6 +1,6 @@
 [tool]
 name = "python_api_challenge"
-version = "0.1.0"
+version = "1.0.0"
 description = "A REST API challenge built with Python and Flask."
 authors = [
     "ArielMAJ <ariel.maj@hotmail.com>",
