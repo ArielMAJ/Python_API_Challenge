@@ -91,4 +91,5 @@ class PlantResource(Resource):
 
     @staticmethod
     def error(obj, message, code):
+        """Return an error message"""
         return make_response(jsonify({"plant": obj, "message": message}), code)

@@ -3,3 +3,6 @@ flask_sqlalchemy==3.0.3
 flask_restful==0.3.9
 python-dotenv==1.0.0
 werkzeug==2.2.3
+validate-docbr==1.10.0
+pyisemail==2.0.1
+requests==2.28.2
