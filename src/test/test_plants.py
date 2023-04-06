@@ -49,7 +49,7 @@ class TestPlant(unittest.TestCase):
         self.assertEqual(
             response_json,
             {
-                "message": "The plants' information were successfully retrieved.",
+                "message": "The plants' data were successfully retrieved.",
                 "plants": [plant_1.json, plant_2.json],
             },
         )
@@ -78,7 +78,7 @@ class TestPlant(unittest.TestCase):
         self.assertDictEqual(
             response_json,
             {
-                "message": "The plants' information were successfully retrieved.",
+                "message": "The plants' data were successfully retrieved.",
                 "plants": [plant_1.json, plant_2.json],
             },
         )
