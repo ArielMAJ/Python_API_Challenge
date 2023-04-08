@@ -1,0 +1,22 @@
+.open-modal-button {
+  padding: 0 0 0 12px;
+  font-size: medium;
+  text-align: left;
+  justify-content: center;
+  align-items: center;
+  width: 170px;
+  height: 35px;
+  margin: 3px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.open-modal-button:hover {
+  background-color: #fff;
+  box-shadow: 0 0 7px 1px rgb(0, 0, 0);
+}
+
+.open-modal-button:active {
+  box-shadow: 0 0 7px 1px rgb(104, 232, 255);
+}
