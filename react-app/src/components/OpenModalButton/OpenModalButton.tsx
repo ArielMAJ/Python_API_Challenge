@@ -3,7 +3,22 @@ import ReactDOM from "react-dom/client";
 import Modal from "../Modal/Modal";
 import "./OpenModalButton.css";
 
-function OpenModalButton(params: { btn_text: any }) {
+async function getJSONdataAndReturnTableArray(endpoint: string) {
+  const response = await fetch(`http://localhost:3000/${endpoint}`);
+  const jsonData = await response.json();
+  const tableDataArray = jsonData[Object.keys(jsonData)[1]];
+  const tableHeader = Object.keys(tableDataArray[0]);
+  if (tableHeader.includes("password"))
+    tableHeader.splice(tableHeader.indexOf("password"), 1);
+  const tableData = tableDataArray.map((row) => {
+    delete row["password"];
+    return Object.values(row);
+  });
+  tableData.unshift(tableHeader);
+  return tableData;
+}
+
+function OpenModalButton(params: { btn_text: string; endpoint: string }) {
   function handleCloseModal() {
     document.removeEventListener("keydown", esc);
     const container = document.getElementById("modal-container");
@@ -13,19 +28,22 @@ function OpenModalButton(params: { btn_text: any }) {
   function esc(event) {
     if (event.key === "Escape") handleCloseModal();
   }
-  
-  function handleOpenModal() {
+
+  async function handleOpenModal() {
     document.scrollingElement?.scrollTo(0, 0);
     const container = document.getElementById("modal-container");
-    ReactDOM.createRoot(container as HTMLElement).render(
-      <Modal handleCloseModal={handleCloseModal} />
+    const modal = ReactDOM.createRoot(container as HTMLElement);
+    modal.render(
+      <Modal
+        handleCloseModal={handleCloseModal}
+        tableName={params.endpoint}
+        tableData={await getJSONdataAndReturnTableArray(params.endpoint)}
+      />
     );
 
     setTimeout(function () {
       document.addEventListener("keydown", esc);
     }, 200);
-  
-    return;
   }
   return (
     <div>
