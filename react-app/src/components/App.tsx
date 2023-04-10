@@ -6,10 +6,10 @@ function App() {
   return (
     <div className="flex-container flex-column page">
       <div className="button-container">
-        <OpenModalButton btn_text="Add/Update Partner" />
-        <OpenModalButton btn_text="See/Delete Partners" />
-        <OpenModalButton btn_text="Add/Update Plant" />
-        <OpenModalButton btn_text="See/Delete Plants" />
+        {/* <OpenModalButton btn_text="Add/Update Partner" endpoint="/partners/" /> */}
+        <OpenModalButton btn_text="See Partners" endpoint="/partners/" />
+        {/* <OpenModalButton btn_text="Add/Update Plant" endpoint="/plants/"/> */}
+        <OpenModalButton btn_text="See Plants" endpoint="/plants/" />
       </div>
     </div>
   );

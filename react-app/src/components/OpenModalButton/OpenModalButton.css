@@ -1,7 +1,7 @@
 .open-modal-button {
-  padding: 0 0 0 12px;
+  /* padding: 0 0 0 12px; */
   font-size: medium;
-  text-align: left;
+  text-align: center;
   justify-content: center;
   align-items: center;
   width: 170px;
