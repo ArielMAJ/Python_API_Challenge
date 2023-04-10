@@ -1,0 +1,35 @@
+:root {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+body {
+  background: radial-gradient(circle, #00b23b 10%, black 200%);
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.page {
+  width: 100vw;
+  min-height: 100vh;
+  height: max-content;
+}
+
+.margin {
+  margin: 0 5px;
+}
+.padding {
+  padding: 0 5px;
+}

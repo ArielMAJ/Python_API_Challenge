@@ -1,0 +1,18 @@
+th {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #000;
+}
+
+td {
+  padding: 5px;
+  max-width: 220px;
+  text-align: center;
+  word-wrap: break-word;
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+}
+
+td:hover {
+  box-shadow: inset 0 0 10px 1px #fff;
+}
