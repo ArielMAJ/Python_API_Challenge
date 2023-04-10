@@ -66,6 +66,7 @@ To run the application, follow these steps:
 
 - On the `react-app` folder, run the application with `npm start`;
 - You will be able to see the app's link on your terminal, Ctrl+Click it to access it;
+  - Use the "On Your Network" link. `http://localhost:3000` should be taken by the Python API.
 - The back-end server must be running for the front-end to work.
 
 ## SWAGGER
