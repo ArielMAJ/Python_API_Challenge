@@ -7,15 +7,7 @@ async function getJSONdataAndReturnTableArray(endpoint: string) {
   const response = await fetch(`http://localhost:3000/${endpoint}`);
   const jsonData = await response.json();
   const tableDataArray = jsonData[Object.keys(jsonData)[1]];
-  const tableHeader = Object.keys(tableDataArray[0]);
-  if (tableHeader.includes("password"))
-    tableHeader.splice(tableHeader.indexOf("password"), 1);
-  const tableData = tableDataArray.map((row) => {
-    delete row["password"];
-    return Object.values(row);
-  });
-  tableData.unshift(tableHeader);
-  return tableData;
+  return tableDataArray;
 }
 
 function OpenModalButton(params: { btn_text: string; endpoint: string }) {
@@ -37,6 +29,7 @@ function OpenModalButton(params: { btn_text: string; endpoint: string }) {
       <Modal
         handleCloseModal={handleCloseModal}
         tableName={params.endpoint}
+        endpoint={params.endpoint}
         tableData={await getJSONdataAndReturnTableArray(params.endpoint)}
       />
     );
