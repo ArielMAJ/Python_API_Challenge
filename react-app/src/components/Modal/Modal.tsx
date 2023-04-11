@@ -13,7 +13,7 @@ function Modal(params) {
       </button>
       <div id="modal-content">
         <h1>{params.tableName}</h1>
-        <Table tableData={params.tableData} />
+        <Table tableData={params.tableData} endpoint={params.endpoint} />
       </div>
     </div>
   );
