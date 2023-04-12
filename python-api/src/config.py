@@ -26,7 +26,7 @@ class Config:
     DEBUG = os.getenv("ENVIRONEMENT") == "DEV"
     APPLICATION_ROOT = os.getenv("APPLICATION_APPLICATION_ROOT", "")
     HOST = os.getenv("APPLICATION_HOST", "127.0.0.1")
-    PORT = int(os.getenv("APPLICATION_PORT", "3000"))
+    PORT = int(os.getenv("APPLICATION_PORT", "3005"))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     DB_CONTAINER = os.getenv("APPLICATION_DB_CONTAINER", "db")

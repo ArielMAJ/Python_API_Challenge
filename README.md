@@ -63,19 +63,18 @@ To run the application, follow these steps:
 
 #### Python API
 - On the root folder (`Python_API_Challenge`), run the application with `python ./python-api/src/server.py`;
-- The application will be running on `http://localhost:3000/` (`http://127.0.0.1:3000/`), unless a .env file is defined at the server's root folder specifying another path.
+- The application will be running on `http://localhost:3005/` (`http://127.0.0.1:3005/`), unless a .env file is defined at the server's root folder specifying another path.
 
 #### React Front-end
 
-- On the `react-app` folder, run the application with `npm start`;
-- You will be able to see the app's link on your terminal, Ctrl+Click it to access it;
-  - Use the "On Your Network" link. `http://localhost:3000` should be taken by the Python API.
+- On the `react-app` folder, start the application with `npm start`;
+- It will be running on `http://localhost:3000`.
 - The back-end server must be running for the front-end to work.
 
 ## SWAGGER
 
 - [Start the server](#running-the-application) with `python ./python-api/src/server.py`;
-- The Swagger documentation will be available at `http://localhost:3000/apidocs/`.
+- The Swagger documentation will be available at `http://localhost:3005/apidocs/`.
 
 ## Running the unit tests
 

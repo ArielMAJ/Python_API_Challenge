@@ -4,7 +4,7 @@ import Modal from "../Modal/Modal";
 import "./OpenModalButton.css";
 
 async function getJSONdataAndReturnTableArray(endpoint: string) {
-  const response = await fetch(`http://localhost:3000/${endpoint}`);
+  const response = await fetch(`http://localhost:3005/${endpoint}`);
   const jsonData = await response.json();
   const tableDataArray = jsonData[Object.keys(jsonData)[1]];
   return tableDataArray;
