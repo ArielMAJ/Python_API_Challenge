@@ -5,7 +5,7 @@ async function deleteRow(
   rowId: number | null,
   tableRowId
 ) {
-  const url = `http://127.0.0.1:3000${endpoint}${rowId}`;
+  const url = `http://127.0.0.1:3005${endpoint}${rowId}`;
   await fetch(url, {
     method: "DELETE",
     headers: { accept: "application/json" },
