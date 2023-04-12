@@ -11,7 +11,7 @@ function Table(params: { tableData: any[]; endpoint: string }) {
     <TableRow
       rowData={tableHeader}
       endpoint={null}
-      rowId={null}
+      rowId={-1}
     />
   );
   const bodyRows = params.tableData.map((rowData) => {

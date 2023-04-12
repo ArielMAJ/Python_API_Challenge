@@ -23,12 +23,14 @@ This is a Python API back-end challenge, built with Python and Flask.
 
 The application is a REST API that can be accessed via HTTP requests. It stores and retrieve data about `partners` and `plants` in a database. The API is documented with [Swagger](#swagger).
 
+The application also has a React front-end, which is still in development. It is a simple web application that allows the user to interact with the API. 
+
 ## Requirements
 
 - Written and tested with Python 3.11.0 on a Windows 11 machine;
-- [pyproject.toml](pyproject.toml) contains the dependencies;
-- [requirements.txt](requirements.txt) also contains the dependencies;
-- [requirements-dev.txt](requirements-dev.txt) contains the dependencies for development.
+- [pyproject.toml](python-api/pyproject.toml) contains the dependencies;
+- [requirements.txt](python-api/requirements.txt) also contains the dependencies;
+- [requirements-dev.txt](python-api/requirements-dev.txt) contains the dependencies for development.
 
 ## Running the application
 
@@ -46,6 +48,7 @@ To run the application, follow these steps:
 #### Python API
 
 - Make sure you have [Python 3.11.0](https://www.python.org/downloads/) or higher installed (you can check your version with `python --version`);
+- Change directory to `./python-api` with `cd ./python-api`;
 - Create a virtual environment with `python -m venv venv`;
 - Activate the virtual environment with `venv\Scripts\activate` (on Windows) or `source venv/bin/activate` (on Linux/Mac);
 - Install the dependencies with `pip install -r requirements.txt`.
@@ -59,24 +62,23 @@ To run the application, follow these steps:
 ### Run the application
 
 #### Python API
-- On the root folder (`Python_API_Challenge`), run the application with `python ./src/server.py`;
-- The application will be running on `http://127.0.0.1:3000/` (unless a .env file is defined at the server's root folder specifying another path).
+- On the root folder (`Python_API_Challenge`), run the application with `python ./python-api/src/server.py`;
+- The application will be running on `http://localhost:3005/` (`http://127.0.0.1:3005/`), unless a .env file is defined at the server's root folder specifying another path.
 
 #### React Front-end
 
-- On the `react-app` folder, run the application with `npm start`;
-- You will be able to see the app's link on your terminal, Ctrl+Click it to access it;
-  - Use the "On Your Network" link. `http://localhost:3000` should be taken by the Python API.
+- On the `react-app` folder, start the application with `npm start`;
+- It will be running on `http://localhost:3000`.
 - The back-end server must be running for the front-end to work.
 
 ## SWAGGER
 
-- [Start the server](#running-the-application) with `python ./src/server.py`;
-- The Swagger documentation will be available at `http://127.0.0.1:3000/apidocs/`.
+- [Start the server](#running-the-application) with `python ./python-api/src/server.py`;
+- The Swagger documentation will be available at `http://localhost:3005/apidocs/`.
 
 ## Running the unit tests
 
-- Change directory to `./src` with `cd ./src`;
+- Change directory to `./python-api/src` with `cd ./python-api/src`;
 - `python -m unittest` to run all the tests;
 
 ## Compatibility
