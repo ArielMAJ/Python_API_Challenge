@@ -23,7 +23,7 @@ class Config:
     env_path = os.path.join(DIRNAME, "..", ".env")
     load_dotenv(env_path, verbose=True)
 
-    DEBUG = os.getenv("ENVIRONEMENT") == "DEV"
+    DEBUG = os.getenv("ENVIRONMENT") == "DEV"
     APPLICATION_ROOT = os.getenv("APPLICATION_APPLICATION_ROOT", "")
     HOST = os.getenv("APPLICATION_HOST", "127.0.0.1")
     PORT = int(os.getenv("APPLICATION_PORT", "3005"))
