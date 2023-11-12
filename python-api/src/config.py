@@ -1,5 +1,5 @@
 """
-Configures the application and its environment.
+Application's and its environment's configuration.
 """
 import logging
 import os
@@ -19,12 +19,11 @@ if not os.path.exists(LOGS_DIR):
 class Config:
     """Base configuration."""
 
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
     env_path = os.path.join(DIRNAME, "..", ".env")
     load_dotenv(env_path, verbose=True)
 
     DEBUG = os.getenv("ENVIRONMENT") == "DEV"
-    APPLICATION_ROOT = os.getenv("APPLICATION_APPLICATION_ROOT", "")
+    APPLICATION_ROOT = os.getenv("APPLICATION_ROOT", "")
     HOST = os.getenv("APPLICATION_HOST", "127.0.0.1")
     PORT = int(os.getenv("APPLICATION_PORT", "3005"))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
